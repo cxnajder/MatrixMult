@@ -7,24 +7,27 @@ def mnozenieMacierzy(A, B):
                 C[i][j]+=A[i][k]*B[k][j]
     return C
 
-
-print("==============================")
-print("=== Wellcome to MatrixMult ===")
-print("==============================")
-print("Type 4 parameters to describe matrixes")
-print("[ A: Arg(1)xArg(2)  B: Arg(3)xArg(4) ]")
-print("======================================")
+print("="*60)
+print("=", "Wellcome to MatrixMult".center(56), "=")
+print("="*60)
+print("=", "Type 4 parameters to describe matrixes".center(56), "=")
+print("=", "[ A: Arg(1)xArg(2)  B: Arg(3)xArg(4) ]".center(56), "=")
+print("="*60)
 arg = []
 
 i = 1
+a=0
 while i <= 4:
     print("Podaj Arg", i, ":", sep="", end="")
-    arg.append(int(input()))
-    if arg[-1] <= 0: #jeśli ktoś poda ujemną wartość zostanie ona usunięta, a 'i' nie zostanie zwiększone o jeden
-        arg.pop()
-        print("\tInvalid arg!")
-        continue
-    i += 1
+    try:
+        a=int(input())
+        assert a > 0
+        arg.append(a)
+        i += 1
+    except ValueError:
+        print("Try to insert a valid argument")
+    except AssertionError:
+        print("The argument can't be lower then 1")
 
 print("[ A: ", arg[0], "x", arg[1], "  B: ", arg[2], "x", arg[3], " ]", sep="")
 
@@ -61,3 +64,4 @@ if arg[1] == arg[2]:
         print('\t', row, sep="")
 else: 
     print("Cant multiply matrix becouse Arg(2) =/= Arg(3)!")
+ 
